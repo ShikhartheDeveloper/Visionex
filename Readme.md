@@ -60,3 +60,31 @@ It is built using the **MERN stack** and integrates an **AI image generation API
 ---
 
 ## 📂 Project Structure
+
+```text
+visionex/
+├── client/                # Frontend application (React + Vite)
+│   ├── public/            # Static assets
+│   ├── src/
+│   │   ├── assets/        # Images, icons, and global styles
+│   │   ├── components/    # Reusable UI components
+│   │   ├── features/      # Redux slices and service logic
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── pages/         # Main application screens
+│   │   ├── App.jsx        # Root component and routing
+│   │   └── main.jsx       # Entry point for React
+│   ├── index.html         # Main HTML file
+│   └── vite.config.js     # Vite/build configuration
+│
+├── server/                # Backend API (Node.js + Express)
+│   ├── config/            # Database and external service config
+│   ├── controllers/       # Request handlers and business logic
+│   ├── middleware/        # Auth, upload, and error middleware
+│   ├── models/            # MongoDB/Mongoose data models
+│   ├── routes/            # API endpoint definitions
+│   └── server.js          # Entry point for the Express server
+│
+├── .env                   # Sensitive configuration (Keys, URI)
+├── package.json           # Root project metadata and scripts
+└── Readme.md              # Documentation
+```
