@@ -4,13 +4,13 @@
   "description": "**Visionex** is a modern AI-powered social media platform where creativity meets artificial intelligence. Users can generate AI art, share posts, follow creators, and engage with a community built entirely around machine-generated visuals.",
   "main": "server.js",
   "type": "module",
-  "scripts": {
+ "scripts": {
     "start": "node server/server.js",
     "dev": "node --watch server/server.js",
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
     "build": "npm run install-client && npm run build-client"
-  },
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
