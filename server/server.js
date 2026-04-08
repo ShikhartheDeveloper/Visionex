@@ -14,62 +14,46 @@ import adminRoutes from "./routes/adminRoutes.js"
 import postRoutes from "./routes/postRoutes.js"
 import savedPostsRoutes from "./routes/savedPostRoutes.js"
 
+// __dirname fix for ES Modules
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 dotenv.config({ path: path.resolve(process.cwd(), ".env") })
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8080
 const app = express()
-
 
 // DB Connection
 connectDB()
 
 // Body Parser
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: true }))
 
-
-// Serve Frontend
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
+// ✅ Serve static files in production
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../client/dist")))
-
-    app.get("*", (req, res, next) => {
-        if (req.originalUrl.startsWith("/api")) {
-            return next()
-        }
-        res.sendFile(path.resolve(__dirname, "../", "client", "dist", "index.html"))
-    })
-} else {
-    // Default Route for Development
-    app.get("/", (req, res) => {
-        res.json({
-            message: "WELCOME TO VISIONEX API..."
-        })
-    })
 }
 
-
-// Auth Routes
+// ── API Routes ────────────────────────────────────────────────────
 app.use("/api/auth", authRoutes)
-
-// Follow Routes
 app.use("/api/user", followRoutes)
-
-// Profile Routes
 app.use("/api/profile", profileRoutes)
-
-// Admin Routes
 app.use("/api/admin", adminRoutes)
-
-// Post Routes
 app.use("/api/posts", postRoutes)
-
-// Saved Posts
 app.use("/api/saved-posts", savedPostsRoutes)
 
-
+// ── Catch-all: serve React for non-API routes ─────────────────────
+if (process.env.NODE_ENV === "production") {
+    // ✅ Express v5 compatible wildcard
+    app.get("/{*splat}", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "../client/dist/index.html"))
+    })
+} else {
+    app.get("/", (req, res) => {
+        res.json({ message: "WELCOME TO VISIONEX API..." })
+    })
+}
 
 // Error Handler
 app.use(errorHandler)
