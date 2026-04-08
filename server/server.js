@@ -14,7 +14,7 @@ import adminRoutes from "./routes/adminRoutes.js"
 import postRoutes from "./routes/postRoutes.js"
 import savedPostsRoutes from "./routes/savedPostRoutes.js"
 
-dotenv.config()
+dotenv.config({ path: path.resolve(process.cwd(), ".env") })
 
 const PORT = process.env.PORT || 5000
 const app = express()
