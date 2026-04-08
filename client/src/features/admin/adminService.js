@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "../../config/axiosConfig"
 
 const API_URL = "/api/admin"
 
@@ -41,14 +41,14 @@ const fetchAllReports = async (token) => {
 }
 
 
-const updateUser = async (uid, token) => {
+const updateUser = async (uid, data = {}, token) => {
     let options = {
         headers: {
             authorization: `Bearer ${token}`
         }
     }
 
-    const response = await axios.put(`${API_URL}/user/${uid}`, {}, options)
+    const response = await axios.put(`${API_URL}/user/${uid}`, data, options)
     return response.data
 }
 

@@ -12,7 +12,9 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminPosts from './pages/admin/AdminPosts';
 import AdminReports from './pages/admin/AdminReports';
+import Arcade from './pages/Arcade';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import PrivateComponent from './components/PrivateComponent';
 import PrivateAdminComponent from './components/admin/PrivateAdminComponent';
 
@@ -36,6 +38,7 @@ const App = () => {
             <Route path='explore' element={<Explore />} />
             <Route path='generate' element={<Generate />} />
             <Route path='profile/:username' element={<Profile />} />
+            <Route path='arcade' element={<Arcade />} />
           </Route>
 
 

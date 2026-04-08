@@ -122,7 +122,31 @@ const updateAvatar = async (req, res) => {
     }
 }
 
-const profileController = { getMyFollowers, getMyFollowings, getProfile, updateAvatar }
+const addCredit = async (req, res) => {
+    const user = await User.findById(req.user.id)
+
+    if (!user) {
+        res.status(404)
+        throw new Error('User Not Found!')
+    }
+
+    user.credits += 1
+    await user.save()
+
+    res.status(200).json({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        bio: user.bio,
+        credits: user.credits,
+        isAdmin: user.isAdmin,
+        isActive: user.isActive,
+        createdAt: user.createdAt
+    })
+}
+
+const profileController = { getMyFollowers, getMyFollowings, getProfile, updateAvatar, addCredit }
 
 
 export default profileController

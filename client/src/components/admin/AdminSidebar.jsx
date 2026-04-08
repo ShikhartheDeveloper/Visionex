@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, Image as ImageIcon, Flag, Sparkles, LogOut, ShieldCheck, Compass } from 'lucide-react';
+import { LayoutDashboard, Users, Image as ImageIcon, Flag, Sparkles, LogOut, ShieldCheck, Compass, ShieldAlert } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../features/auth/authSlice';
 

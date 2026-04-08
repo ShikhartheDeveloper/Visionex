@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import { useState, useRef } from 'react';
-import PingPongHero from '../components/PingPongHero';
+import FuturisticCover from '../components/FuturisticCover';
 
 const Profile = () => {
 
@@ -120,12 +120,9 @@ const Profile = () => {
         <main className="flex-1 overflow-y-auto pb-20 md:pb-0">
           <div className="w-full relative pb-20">
             {/* Cover Image */}
-            {/* Cover Image - Replaced with Ping Pong Game */}
-            <div className="h-64 sm:h-80 w-full relative overflow-hidden bg-[#0a0a0f]">
-              <PingPongHero />
-              {/* Overlay for depth and contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent"></div>
+            <div className="h-64 sm:h-80 w-full relative overflow-hidden bg-[#0a0a0f] border-b border-white/10">
+              <FuturisticCover />
+              <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
             </div>
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative -mt-24 sm:-mt-32">

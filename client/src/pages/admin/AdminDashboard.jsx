@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Image as ImageIcon, Flag, UserCheck, Eye } from 'lucide-react';
+import { Users, Image as ImageIcon, Flag, UserCheck, Eye, ShieldAlert } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import UserAvatar from '../../components/UserAvatar';
 import AdminSidebar from '../../components/admin/AdminSidebar';

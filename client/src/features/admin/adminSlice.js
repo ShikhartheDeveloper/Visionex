@@ -154,11 +154,16 @@ export const getAllReports = createAsyncThunk("FETCH/ADMIN/REPORTS", async (_, t
 })
 
 
-// Ban/Unban User
-export const banUnBanUser = createAsyncThunk("ADMIN/UPDATE/USER", async (uid, thunkAPI) => {
+// Ban/Unban or Update User
+export const banUnBanUser = createAsyncThunk("ADMIN/UPDATE/USER", async (payload, thunkAPI) => {
     let token = thunkAPI.getState().auth.user.token
+
+    // Handle both string uid and object with {uid, data}
+    const uid = typeof payload === 'string' ? payload : payload.uid
+    const data = typeof payload === 'object' && payload.data ? payload.data : {}
+
     try {
-        return await adminService.updateUser(uid, token)
+        return await adminService.updateUser(uid, data, token)
     } catch (error) {
         let message = error.response.data.message
         return thunkAPI.rejectWithValue(message)

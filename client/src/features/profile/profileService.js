@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "../../config/axiosConfig"
 
 const API_URL = "/api/profile"
 
@@ -50,6 +50,17 @@ const updateAvatar = async (formData, token) => {
 
 
 
-const profileService = { fetchProfile, sendFollowRequest, sendUnFollowRequest, updateAvatar }
+const addCredit = async (token) => {
+    let options = {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.patch(API_URL + "/add-credit", {}, options)
+    return response.data
+}
+
+const profileService = { fetchProfile, sendFollowRequest, sendUnFollowRequest, updateAvatar, addCredit }
 
 export default profileService

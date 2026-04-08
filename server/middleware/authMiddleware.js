@@ -36,11 +36,11 @@ const forAdmin = async (req, res, next) => {
             let decoded = jwt.verify(token, process.env.JWT_SECRET)
             let user = await User.findById(decoded.id).select("-password")
             req.user = user
-            if (user.isAdmin) {
+            if (user.isAdmin && user.isActive) {
                 next()
             } else {
                 res.status(401)
-                throw new Error('UnAuthorised Access! Admin Only')
+                throw new Error('UnAuthorised Access! Admin Only or Banned!')
             }
         } else {
             res.status(401)

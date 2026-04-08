@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Search, Users } from 'lucide-react';
+import { Search, Users, Plus } from 'lucide-react';
 import UserAvatar from '../../components/UserAvatar';
 import AdminSidebar from '../../components/admin/AdminSidebar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,15 @@ const AdminUsers = () => {
 
   const handleBanUnbanUser = (uid) => {
     dispatch(banUnBanUser(uid))
+  }
+
+  const handleAddCredits = (uid) => {
+    const amount = window.prompt("Enter number of credits to add:")
+    if (amount && !isNaN(amount)) {
+      dispatch(banUnBanUser({ uid, data: { credits: Number(amount) } }))
+    } else if (amount !== null) {
+      toast.error("Please enter a valid number", { position: "top-center" })
+    }
   }
 
 
@@ -103,7 +112,18 @@ const AdminUsers = () => {
                             </div>
                           </td>
                           <td className="py-4 px-4 text-gray-300">{u.phone || '-'}</td>
-                          <td className="py-4 px-4 text-gray-300">{u.credits}</td>
+                          <td className="py-4 px-4 text-gray-300">
+                            <div className="flex items-center gap-2">
+                              <span>{u.credits}</span>
+                              <button
+                                onClick={() => handleAddCredits(u._id)}
+                                className="p-1 rounded-lg hover:bg-white/10 text-orange-400 transition-colors"
+                                title="Add Credits"
+                              >
+                                <Plus className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </td>
                           <td className="py-4 px-4 text-gray-300">{u.followers?.length || 0}</td>
                           <td className="py-4 px-4">
                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${u.isActive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>

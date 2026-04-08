@@ -60,8 +60,8 @@ const getReports = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-
     let userId = req.params.uid
+    const { credits } = req.body
 
     const user = await User.findById(userId)
 
@@ -70,9 +70,19 @@ const updateUser = async (req, res) => {
         throw new Error('User Not Found!')
     }
 
-    let updatedUser = await User.findByIdAndUpdate(userId, { isActive: user.isActive ? false : true }, { new: true })
+    let updateData = {}
 
-    if (!updateUser) {
+    // If credits are provided in body, add them to current balance
+    if (credits !== undefined) {
+        updateData.credits = user.credits + Number(credits)
+    } else {
+        // Toggle isActive if no credits provided (Backward compatibility for ban functionality)
+        updateData.isActive = !user.isActive
+    }
+
+    let updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true })
+
+    if (!updatedUser) {
         res.status(409)
         throw new Error('User Not Updated!')
     }

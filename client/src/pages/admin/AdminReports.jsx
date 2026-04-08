@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Flag, Image as ImageIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import AdminSidebar from '../../components/admin/AdminSidebar';
 import Loader from '../../components/Loader';
 import { toast } from 'react-toastify';
@@ -87,9 +88,9 @@ const AdminReports = () => {
                         <button className="border border-gray-500/50 text-gray-300 hover:text-white hover:bg-white/10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors">
                           Dismiss
                         </button>
-                        <button onClick={() => deleteReport(report._id)} className="border border-red-500/50 text-red-400 hover:bg-red-500/10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors">
+                        <Link to={`/auth/post/${report.post?._id}`} className="border border-red-500/50 text-red-400 hover:bg-red-500/10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors text-center">
                           View Post
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>

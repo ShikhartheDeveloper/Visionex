@@ -48,7 +48,11 @@ const Register = () => {
 
   useEffect(() => {
     if (user) {
-      navigate("/auth/feed")
+      if (user.isAdmin) {
+        navigate("/admin/dashboard")
+      } else {
+        navigate("/auth/feed")
+      }
     }
 
     if (isError && message) {
@@ -65,11 +69,15 @@ const Register = () => {
 
   return (
     <div className="h-full w-full bg-[#0a0a0f] overflow-y-auto relative flex flex-col items-center py-20 px-4">
-      {/* Background elements */}
-      <div className="fixed top-1/3 right-1/4 w-96 h-96 bg-rose-600/20 rounded-full blur-[100px]"></div>
-      <div className="fixed bottom-1/3 left-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-[100px]"></div>
+      {/* Cyber Grid & Background elements */}
+      <div className="fixed inset-0 cyber-grid opacity-20 pointer-events-none"></div>
+      <div className="scanline opacity-10"></div>
+      <div className="fixed top-1/3 right-1/4 w-96 h-96 bg-rose-600/10 rounded-full blur-[100px] animate-blob"></div>
+      <div className="fixed bottom-1/3 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
 
-      <div className="glass-card border border-white/10 p-8 md:p-10 rounded-3xl w-full max-w-md relative z-10 shadow-2xl shadow-black my-auto">
+      <div className="glass-card border border-white/10 p-8 md:p-10 rounded-3xl w-full max-w-md relative z-10 shadow-2xl shadow-black my-auto group">
+        <div className="hud-bracket-tl opacity-50"></div>
+        <div className="hud-bracket-br opacity-50"></div>
         <div className="flex justify-center mb-8">
           <Link to="/" className="flex items-center gap-2 group">
             <Sparkles className="text-red-500 w-8 h-8 group-hover:animate-pulse" />

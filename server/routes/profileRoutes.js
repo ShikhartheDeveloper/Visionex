@@ -11,4 +11,5 @@ router.get("/:name", profileController.getProfile)
 router.get("/followers", protect.forUser, profileController.getMyFollowers)
 router.get("/followings", protect.forUser, profileController.getMyFollowings)
 router.patch("/avatar", protect.forUser, upload.single('avatar'), profileController.updateAvatar)
+router.patch("/add-credit", protect.forUser, profileController.addCredit)
 export default router

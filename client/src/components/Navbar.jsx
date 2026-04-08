@@ -50,11 +50,18 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-40 w-full glass-card border-b border-white/10 bg-[#0a0a0f]/80 px-4 md:px-6 h-16 flex items-center justify-between transition-all duration-300">
 
-      {/* Mobile Logo */}
+      {/* Logo & System Status */}
       <div className="flex items-center gap-4 flex-1">
-        <div className="md:hidden flex items-center gap-2">
-          <Sparkles className="text-red-500 w-6 h-6" />
-        </div>
+        <Link to={user?.isAdmin ? "/admin/dashboard" : "/auth/feed"} className="flex items-center gap-2 group relative">
+          <Sparkles className="text-red-500 w-6 h-6 group-hover:animate-pulse group-hover:animate-glitch" />
+          <div className="hidden md:flex flex-col">
+            <span className="font-syne font-bold text-lg tracking-tighter text-white">VISIONEX</span>
+            <div className="flex items-center gap-1">
+              <span className="w-1 h-1 rounded-full bg-green-500 animate-pulse"></span>
+              <span className="text-[8px] font-mono text-gray-500 tracking-[0.2em] uppercase">Node_Active</span>
+            </div>
+          </div>
+        </Link>
       </div>
 
       {/* Right Side Actions */}
