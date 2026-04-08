@@ -1,3 +1,5 @@
+import path from "path"
+import { fileURLToPath } from "url"
 import express from "express"
 import dotenv from "dotenv"
 import colors from "colors"
@@ -26,12 +28,27 @@ app.use(express.json())
 app.use(express.urlencoded())
 
 
-// Default Route
-app.get("/", (req, res) => {
-    res.json({
-        message: "WELCOME TO VISIONEX API..."
+// Serve Frontend
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../client/dist")))
+
+    app.get("*", (req, res, next) => {
+        if (req.originalUrl.startsWith("/api")) {
+            return next()
+        }
+        res.sendFile(path.resolve(__dirname, "../", "client", "dist", "index.html"))
     })
-})
+} else {
+    // Default Route for Development
+    app.get("/", (req, res) => {
+        res.json({
+            message: "WELCOME TO VISIONEX API..."
+        })
+    })
+}
 
 
 // Auth Routes
