@@ -50,17 +50,8 @@ const updateAvatar = async (formData, token) => {
 
 
 
-const addCredit = async (token) => {
-    let options = {
-        headers: {
-            authorization: `Bearer ${token}`
-        }
-    }
 
-    const response = await axios.patch(API_URL + "/add-credit", {}, options)
-    return response.data
-}
 
-const profileService = { fetchProfile, sendFollowRequest, sendUnFollowRequest, updateAvatar, addCredit }
+const profileService = { fetchProfile, sendFollowRequest, sendUnFollowRequest, updateAvatar }
 
 export default profileService

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
-import { Home, Compass, PlusSquare, User, Sparkles, Settings, LogOut, LayoutDashboard, Gamepad2 } from 'lucide-react';
+import { Home, Compass, PlusSquare, User, Sparkles, Settings, LogOut, LayoutDashboard } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../features/auth/authSlice';
 import { resetProfile } from '../features/profile/profileSlice';
@@ -19,7 +19,7 @@ const Sidebar = () => {
     { icon: user?.isAdmin ? LayoutDashboard : Home, label: user?.isAdmin ? "Dashboard" : 'Feed', path: user?.isAdmin ? "/admin/dashboard" : '/auth/feed' },
     { icon: Compass, label: 'Explore', path: '/auth/explore' },
     { icon: PlusSquare, label: 'Generate', path: '/auth/generate' },
-    { icon: Gamepad2, label: 'Arcade', path: '/auth/arcade' },
+
     { icon: User, label: 'Profile', path: `/auth/profile/${user?.name}`, onClick: () => window.location.href = `/auth/profile/${user?.name}` },
   ];
 
